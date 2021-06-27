@@ -32,7 +32,8 @@
 			"spacing":0,
 			"tilecount":96,
 			"tileheight":16,
-			"tilewidth":16
+			"tilewidth":16,
+			"tiles": [##TILES##]
 		   }],
 	"tilewidth":16,
 	"type":"map",

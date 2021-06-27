@@ -1,3 +1,99 @@
 stubs > dreamweb (555)
 	- Main ini code
 	
+
+== Loading rooms with layout::
+
+- Opening scene: R24
+- startLoading
+	_mapX = 22
+	_mapY = 0
+	_mansPath = 3
+	_finalDest = 3
+	_facing = 6
+	
+	findRoomInLoc()
+	
+		
+	
+checkForExit()
+
+
+
+moveMap()
+
+
+
+
+== DEBUG KEYS ===
+Add new keys to dreamweb.cpp: line 319 onwards
+
+== showAllObjs ==
+Obs: 81 = Waste bin
+Obs: 59 = CD Player
+Obs: 19 = Radiator
+Obs: 41 = Drawers
+Obs: 42 = Drawers
+Obs: 27 = Mirror
+Obs: 30 = LIght * 4
+Obs: 64 = Radiator
+Obs: 31 = Desk
+Obs: 32 = Chair
+Obs: 33 = Monitor
+Obs: 34 = Console
+Obs: 35 = Window * 3
+Obs: 9  = Mouse mat
+Obs: 1  = Clock
+Obs: 36 = Mouse
+Obs: 73 = ???
+Obs: 93 = Magazines
+Obs: 94 = Book
+Obs: 98 = Jeans
+Obs: 20 = Bed
+Obs: 97 = Shirt
+Obs: 65 = Fan
+
+
+Room 24:
+=g_roomData
+name:			"DREAMWEB.R24"
+roomsSample:	5
+b14:			255
+mapX:			22 
+mapY:			0 
+b17:			255 
+b18:			255 
+b19:			255 
+liftFlag:		0 
+b21:			3
+facing:			6
+countToOpen:	0
+liftPath:		255 
+doorPath:		255 
+b26:			255 
+b27:			255 
+b28:			33
+b29:			0
+b30:			3
+realLocation:	24 
+
+x:82, y:21
+{ width: 47, height: 54, ptr: 2249, x: 0, y: 7 },
+
+
+x:170, y:59
+
+
+=== What each section oif a room is used for ===
+
+== backdropFlags
+backdrop.cpp, drawFlags :: 248
+Maps _flag and _flagEx to each tile
+_flagEx = Something to do with room exists
+
+== backdropBlocks
+Literally the grpahics files - All extracted to tilesheet
+
+== workspace
+Map layout - Working as tsx file
+
