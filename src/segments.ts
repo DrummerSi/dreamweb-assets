@@ -1,13 +1,14 @@
-import BinaryFile from "binary-file"
-import {Parser} from "binary-parser"
-import Struct from "struct"
-import cliProgress from "cli-progress"
-import { kFrameBlocksize } from "./settings"
-import Jimp from "jimp"
-import { getColour } from "./utils"
-import fs from "fs"
-import { workspaceArr } from "./data"
-import _ from "lodash"
+import BinaryFile from "binary-file";
+import { Parser } from "binary-parser";
+import cliProgress from "cli-progress";
+import fs from "fs";
+import Jimp from "jimp";
+import _ from "lodash";
+import Struct from "struct";
+import { workspaceArr } from "./data";
+import { kFrameBlocksize } from "./settings";
+import { getColour } from "./utils";
+
 
 export const getGraphicsSegment = (no: number) => {
 	return {
@@ -47,13 +48,21 @@ export const getGraphicsSegment = (no: number) => {
 }
 
 export const getTextSegment = (no: number) => {
+    const sizes = {
+        9: 130,     //setDesc
+        10: 98,     //blockDesc
+        11: 38,     //roomDesc
+        14: 82      //freeDesc
+    }
+    const size = sizes[no]
+
 	return {
 		type: new Parser()
 			.buffer("offsets", {
-				length: 2052
+				length: size*2
 			})
 			.string("text", {
-				length: item => item.len[no] - 2052
+				length: item => item.len[no] - (size*2)
 			})
 	}
 }
@@ -84,7 +93,24 @@ export const extractTextSegment = async(name: string, type: string, blocks: any)
 	
 	try {
 		if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-		fs.writeFileSync(`${dir}/${type}.txt`, blocks.text)
+		//fs.writeFileSync(`${dir}/${type}.txt`, blocks.text)
+        
+        const b = Buffer.from(blocks.text)
+        const txt = b.toString()
+        const arr = txt.split("\0")
+        //const out = arr.join("\n")
+
+        let outData = {}
+        for(let x = 0; x<arr.length; x++){
+            const line = arr[x]
+            if(line !== ""){
+                outData[x] = line
+            }
+        }
+
+        const out = JSON.stringify(outData, null, 4)
+
+        fs.writeFileSync(`${dir}/${type}.txt`, out)
 		
 	} catch (err) {
 		console.error(err)

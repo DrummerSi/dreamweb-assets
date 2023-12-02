@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --inspect=4321 --project tsconfig.json src/index.ts",
     "old": "ts-node-dev --respawn --transpile-only src/index-old.ts",
 	"debug": "nodemon --inspect ./src/index.ts"
   },

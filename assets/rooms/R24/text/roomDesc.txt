@@ -1,0 +1,6 @@
+{
+    "2": "EDEN'S BEDROOM:Eden's bedroom doubles as a study. Opposite the bed is a desk with a computer console on it. There is a huge window in one wall of the room giving a view across the city.",
+    "3": "EDEN'S APARTMENT:Eden's apartment has been converted from an old warehouse. The floor and walls are both made of stone and the ceiling is high. One small area of this room has been converted into a kitchen.",
+    "4": "EDEN'S ELEVATOR:Eden's elevator used to be a goods elevator. There are heavy doors across the entrance and the control panel is a large piece of industrial equipment bolted onto the wall.",
+    "9": "EDEN'S BATHROOM:Eden's bathroom leads directly off her living area. The floor is small black and white tiles and everything else is green colored. There is a medicine cabinet on the wall by the sink."
+}

@@ -1,11 +1,14 @@
-import BinaryFile from "binary-file"
-import {Parser} from "binary-parser"
-import { extractAdditionalRoomData, extractGraphicsSegment, extractTextSegment, extractWorkspace, getGraphicsSegment, getTextSegment } from "./segments"
-import Struct from "struct"
-import { ROOMPATHS_SIZE } from "./settings"
-import { dumpData, ensurePath } from "./utils"
-import Jimp from "jimp"
-import palette from "./palette"
+import BinaryFile from "binary-file";
+import { Parser } from "binary-parser";
+import Jimp from "jimp";
+import Struct from "struct";
+import palette from "./palette";
+import {
+    extractAdditionalRoomData, extractGraphicsSegment, extractTextSegment, extractWorkspace, getGraphicsSegment, getTextSegment
+} from "./segments";
+import { ROOMPATHS_SIZE } from "./settings";
+import { dumpData, ensurePath } from "./utils";
+
 
 const readRoomData = async(filename: string) => {
 	
@@ -172,12 +175,9 @@ const readRoomData = async(filename: string) => {
 		.buffer("reelList", {
 			length: item => {
 				if(item.len[7] <= ROOMPATHS_SIZE) return 0
-				
-				//console.log("item.len[7]", item.len[7], ROOMPATHS_SIZE)
+
 				const reelLen = item.len[7] - ROOMPATHS_SIZE
-				//console.log("reelLen", reelLen)
 				const reelCount = (reelLen + 4) / 5
-				//console.log(reelCount)
 				
 				return item.len[7] - ROOMPATHS_SIZE
 			},
@@ -308,6 +308,7 @@ const extractRoom = async (name: string, room: any) => {
 	await extractGraphicsSegment(name, "reel2", room.reel2)
 	await extractGraphicsSegment(name, "reel3", room.reel3)
 	await extractGraphicsSegment(name, "freeFrames", room.freeFrames)
+
 	await extractTextSegment(name, "personText", room.personText)
 	await extractTextSegment(name, "setDesc", room.setDesc)
 	await extractTextSegment(name, "blockDesc", room.blockDesc)
@@ -323,8 +324,10 @@ const extractRoom = async (name: string, room: any) => {
 
 export const extractRooms = async() => {
 	// "R21" ommitted - Currently produces an error
-	const rooms = ["R00", "R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R19", "R20", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R45", "R46", "R47", "R50", "R52", "R53", "R54", "R55"]
+	//const rooms = ["R00", "R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R19", "R20", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R45", "R46", "R47", "R50", "R52", "R53", "R54", "R55"]
 	
+    const rooms = ["R24"]
+
 	for(const room in rooms){
 		const roomToLoad = rooms[room]
 		const roomData = await readRoomData(roomToLoad)
